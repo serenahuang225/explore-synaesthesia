@@ -1,6 +1,6 @@
 import React from 'react'
-
 import { motion } from 'framer-motion';
+
 import AuditoryTactileExperience from './types/AuditoryTactileExperience';
 import ChromesthesiaExperience from './types/ChromesthesiaExperience';
 import GraphemeColorExperience from './types/GraphemeColorExperience';
