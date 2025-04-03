@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ExperienceView from './ExperienceView';
+import InfoPage from './InfoPage';
 
 const generateRandomSize = () => {
   const base = 90 + Math.random() * 90;
@@ -70,6 +71,7 @@ const Blob = ({ x, y, color, text, onClick, size }) => {
 
 export default function App() {
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [showInfo, setShowInfo] = useState(false);
   
   // Generate random positions and sizes for blobs
   const blobData = SynesthesiaTypes.map((type, index) => {
@@ -116,6 +118,16 @@ export default function App() {
               Synesthesia Explorer
             </motion.h1>
             
+            <motion.button 
+              whileHover={{scale: 1.1}} style={{cursor: 'pointer'}}
+              onClick={() => setShowInfo(true)}
+              className="fixed flex items-center top-4 right-4 bg-gray-200 text-black p-3 rounded-full shadow-lg"
+            >
+              <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg> Info
+            </motion.button>
+            
             {blobData.map((blob) => (
               <Blob
                 key={blob.name}
@@ -129,6 +141,10 @@ export default function App() {
             ))}
           </>
         )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showInfo && <InfoPage onClose={() => setShowInfo(false)} />}
       </AnimatePresence>
     </div>
   );

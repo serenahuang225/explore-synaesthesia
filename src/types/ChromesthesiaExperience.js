@@ -1,4 +1,3 @@
-import { Canvas } from '@react-three/fiber';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Soundfont } from 'smplr';
